@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OpenCV" Version="2.4.11" />
+    <PackageReference Include="TensorFlowSharp" Version="1.2.2" />
+  </ItemGroup>
+
+</Project>
