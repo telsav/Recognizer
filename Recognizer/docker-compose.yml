@@ -1,8 +1,0 @@
-version: '2'
-
-services:
-  recognizer:
-    image: recognizer
-    build:
-      context: ./Recognizer
-      dockerfile: Dockerfile
