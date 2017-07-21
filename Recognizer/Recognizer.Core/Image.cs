@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Recognizer.Core
 {
-    class Image
+    public class Image
     {
     }
 }
