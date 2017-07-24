@@ -14,7 +14,7 @@ and install tensorflow via pip
 $ pip3 install --upgrade tensorflow
 '''
 
-## more information please read this[tensorflow](https://github.com/tensorflow/tensorflow)
+## more information please read this [tensorflow](https://github.com/tensorflow/tensorflow)
 
 
 ## if encountered error pls do the following steps and solved problems
