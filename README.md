@@ -19,4 +19,4 @@ more information please read this[#(https://github.com/tensorflow/tensorflow)ten
 if encountered error pls do the following steps and solved problems
 1- conda uninstall -c conda-forge opencv3
 2- conda install python=3.5
-3- conda install -c conda-forge opencv3
+3- conda install -c conda-forge opencv
