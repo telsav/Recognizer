@@ -1,7 +1,6 @@
 # Recognizer
 
-## First of all, install python3.5 if you have mutil-version python
-https://www.python.org/downloads/release/python-350/
+## First of all, install python3.5 if you have mutil-version [python](https://www.python.org/downloads/release/python-350/)
 
 ## Second, upgrade pip 
 
@@ -15,7 +14,7 @@ and install tensorflow via pip
 $ pip3 install --upgrade tensorflow
 '''
 
-## more information please read this[#(https://github.com/tensorflow/tensorflow)tensorflow] 
+## more information please read this[tensorflow](https://github.com/tensorflow/tensorflow)
 
 
 ## if encountered error pls do the following steps and solved problems
