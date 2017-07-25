@@ -65,3 +65,4 @@ Summary of guidelines:
  1. http://www.learnopencv.com/install-opencv3-on-windows/
  2. https://github.com/opencv/opencv
  3. https://www.tensorflow.org/install/install_windows
+ 4. https://www.solarianprogrammer.com/2016/09/17/install-opencv-3-with-python-3-on-windows/
