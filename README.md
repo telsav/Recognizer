@@ -35,6 +35,17 @@ RuntimeError: module compiled against API version 0xb but this version of numpy 
 pip install numpy --upgrade
 ```
 
+## Contributing
+
+Please read before starting work on a pull request: https://github.com/WangCharlie/Recognizer/wiki/How_to_contribute
+
+Summary of guidelines:
+
+* One pull request per issue;
+* Choose the right base branch;
+* Include tests and documentation;
+* Clean up "oops" commits before submitting;
+* Follow the coding style guide.
 
 ## Refenerce
 http://www.learnopencv.com/install-opencv3-on-windows/
