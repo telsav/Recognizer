@@ -34,6 +34,20 @@ RuntimeError: module compiled against API version 0xb but this version of numpy 
 ```
 pip install numpy --upgrade
 ```
+## Installation commands:
+
+There is a CPU and a GPU version, you can install either or both if you wish so. The commands are as follows:
+
+CPU:
+```
+pip install --upgrade
+  https://storage.googleapis.com/tensorflow/windows/cpu/tensorflow-0.12.0rc0-cp35-cp35m-win_amd64.whl
+```
+GPU:
+```
+pip install --upgrade
+  https://storage.googleapis.com/tensorflow/windows/gpu/tensorflow_gpu-0.12.0rc0-cp35-cp35m-win_amd64.whl
+```
 
 ## Contributing
 
