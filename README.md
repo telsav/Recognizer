@@ -48,6 +48,6 @@ Summary of guidelines:
 * Follow the coding style guide.
 
 ## Resources
-http://www.learnopencv.com/install-opencv3-on-windows/
-https://github.com/opencv/opencv
+1. http://www.learnopencv.com/install-opencv3-on-windows/
+2. https://github.com/opencv/opencv
 
