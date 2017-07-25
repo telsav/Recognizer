@@ -18,6 +18,7 @@ $ pip3 install --upgrade tensorflow
 
 
 ## if encountered error pls do the following steps and solved problems
-* 1- conda uninstall -c conda-forge opencv3
-* 2- conda install python=3.5
-* 3- conda install -c conda-forge opencv
+* 1. conda uninstall -c conda-forge opencv3
+* 2. conda install python=3.5
+* 3. conda install -c conda-forge opencv
+* 4. conda install -c pyqt
