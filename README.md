@@ -1,5 +1,10 @@
 # Recognizer
 
+-----------------
+
+| **`Linux CPU`** | **`Linux GPU`** | **`Mac OS CPU`** | **`Windows CPU`** | **`Android`** |
+|-----------------|---------------------|------------------|-------------------|---------------|
+
 ## First of all, install python3.5 if you have mutil-version [python](https://www.python.org/downloads/release/python-350/)
 
 ## Second, upgrade pip 
