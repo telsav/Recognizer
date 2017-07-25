@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import sys
 
-from PyQt4 import QtGui
+from PyQt5 import QtGui
 
 
 def show_image(image_path='s_pycharm.jpg'):
