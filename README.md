@@ -22,3 +22,11 @@ $ pip3 install --upgrade tensorflow
 * 2. conda install python=3.5
 * 3. conda install -c conda-forge opencv
 * 4. conda install -c pyqt
+
+## if encountered this error 
+RuntimeError: module compiled against API version 0xb but this version of numpy is 0xa
+
+```
+pip install numpy --upgrade
+```
+
