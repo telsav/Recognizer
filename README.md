@@ -47,5 +47,7 @@ Summary of guidelines:
 * Clean up "oops" commits before submitting;
 * Follow the coding style guide.
 
-## Refenerce
+## Resources
 http://www.learnopencv.com/install-opencv3-on-windows/
+https://github.com/opencv/opencv
+
