@@ -1,4 +1,4 @@
-# Recognizer
+# Face Recognition Authentication
 
 -----------------
 
@@ -19,9 +19,6 @@ and install tensorflow via pip
 ```
 $ pip3 install --upgrade tensorflow
 ```
-
-## more information please read this [tensorflow](https://github.com/tensorflow/tensorflow)
-
 
 ## if encountered error pls do the following steps and solved problems
 * 1. conda uninstall -c conda-forge opencv3
@@ -67,3 +64,4 @@ Summary of guidelines:
  2. https://github.com/opencv/opencv
  3. https://www.tensorflow.org/install/install_windows
  4. https://www.solarianprogrammer.com/2016/09/17/install-opencv-3-with-python-3-on-windows/
+ 5. more information please read this [tensorflow](https://github.com/tensorflow/tensorflow)
