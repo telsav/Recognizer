@@ -2,8 +2,8 @@
 <div align="center">
 <img src="resources/index-pic.jpg"/>
 </div>
------------------
 
+-----------------
 | **`Linux CPU`** | **`Linux GPU`** | **`Mac OS CPU`** | **`Windows CPU`** | **`Android`** |
 |-----------------|---------------------|------------------|-------------------|---------------|
 | [![Build Status](https://ci.tensorflow.org/buildStatus/icon?job=tensorflow-master-cpu)](https://github.com/WangCharlie/Recognizer) | [![Build Status](https://ci.tensorflow.org/buildStatus/icon?job=tensorflow-master-linux-gpu)](https://github.com/WangCharlie/Recognizer) | [![Build Status](https://ci.tensorflow.org/buildStatus/icon?job=tensorflow-master-mac)](https://github.com/WangCharlie/Recognizer) | [![Build Status](https://ci.tensorflow.org/buildStatus/icon?job=tensorflow-master-win-cmake-py)](https://github.com/WangCharlie/Recognizer) | [![Build Status](https://ci.tensorflow.org/buildStatus/icon?job=tensorflow-master-android)](https://github.com/WangCharlie/Recognizer) |
