@@ -1,5 +1,7 @@
 # Face Recognition Authentication
-
+<div align="center">
+<img src="resources/index-pic.jpg"/>
+</div>
 -----------------
 
 | **`Linux CPU`** | **`Linux GPU`** | **`Mac OS CPU`** | **`Windows CPU`** | **`Android`** |
