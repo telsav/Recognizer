@@ -36,6 +36,19 @@ pip install numpy --upgrade
 ```
 ## Installation commands:
 
+```
+$ pip3 install --upgrade tensorflow
+```
+
+```
+$ conda install -c conda-forge opencv
+```
+
+```
+$ pip install -r requirements.txt
+```
+
+
 There is a CPU and a GPU version, you can install either or both if you wish so. The commands are as follows:
 
 CPU:
