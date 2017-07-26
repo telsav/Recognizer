@@ -34,6 +34,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="data\boss\dummy.jpg" />
+    <Content Include="data\other\dummy.jpg" />
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
