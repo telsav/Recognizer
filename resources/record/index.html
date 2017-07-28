@@ -1,0 +1,24 @@
+<b>Play</b> | <a href="record.html">Record</a>
+<br/>
+<script type="text/javascript" src="/jwplayer/jwplayer.js"></script>
+
+<div id="container">Loading the player ...</div>
+    <script type="text/javascript">
+        jwplayer("container").setup({
+        sources: [
+            {
+                file: "rtmp://123.207.24.118/live/mystream"
+            }
+        ],
+        image: "bg.jpg",
+        logo: {
+            file: 'logo.png',
+            link: 'http://oa.pptv.com/',
+            position: "bottom-right"
+        },
+        autostart: false,
+        width: 640,
+        height: 480,
+        primary: "flash"
+});
+</script>
