@@ -16,7 +16,6 @@ if __name__ == '__main__':
 
     cap.open('rtmp://123.207.24.118/live/mystream')
 
-    #cap.open('http//123.207.24.118/live/mystream?.mjpeg')
 
     cascade_path = "C:\Program Files\Anaconda3\Library\etc\haarcascades\haarcascade_frontalface_default.xml"
     model = Model()
