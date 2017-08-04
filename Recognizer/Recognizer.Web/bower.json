@@ -5,6 +5,11 @@
     "bootstrap": "3.3.7",
     "jquery": "2.2.0",
     "jquery-validation": "1.14.0",
-    "jquery-validation-unobtrusive": "3.2.6"
+    "jquery-validation-unobtrusive": "3.2.6",
+    "tracking": "v1.1.3",
+    "videojs": "v6.2.5",
+    "stats.js": "r17",
+    "facedetection": "0.2.1",
+    "jquery.facedetection": "v2.0.2"
   }
 }
