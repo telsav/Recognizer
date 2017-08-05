@@ -1,0 +1,32 @@
+{
+	"name": "facedetection",
+	"version": "0.2.1",
+	"homepage": "https://github.com/sprky0/facedetection",
+	"authors": [
+		"sprky0 <avery@averyisgreat.com>",
+		"Liu Liu <liuliu@liuliu.me>",
+		"Jay Salvat <jay@jaysalvat.com>"
+	],
+	"description": "AMD / require.js module port of Liu Liu's CCV face detection.",
+	"main": "dist/facedetection.js",
+	"keywords": [
+		"facedetection",
+		"imaging",
+		"js",
+		"canvas",
+		"html5"
+	],
+	"license": "MIT",
+	"private": false,
+	"ignore": [
+		"Gruntfile.js",
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests",
+		"build",
+		".gitignore",
+		"package.json"
+	]
+}

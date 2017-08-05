@@ -35,3 +35,99 @@ textarea {
         display: none;
     }
 }
+
+
+body {
+    margin-top: 30px;
+}
+
+.file-input-wrapper {
+    height: 35px;
+    overflow: hidden;
+    position: absolute;
+    width: 123px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.file-input-wrapper > input[type="file"] {
+    font-size: 40px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* change player background color */
+#myVideo {
+    background-color: #E8E884;
+}
+
+/* place fullscreen control on right side of the player */
+.video-js .vjs-control.vjs-fullscreen-control {
+    position: absolute;
+    right: 0;
+}
+
+/* make sure the custom controls are always visible because
+   the plugin hides and replace the video.js native mobile
+   controls */
+.vjs-using-native-controls .vjs-control-bar {
+    display: flex !important;
+}
+
+.pos-rlt {
+    position: relative;
+}
+
+
+.item .top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.item .bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.item .center {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+}
+
+.item .gd {
+    background-color: transparent;
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(rgba(0,0,0,0)),color-stop(20%,rgba(0,0,0,0.25)),to(rgba(0,0,0,0.75)));
+    background-image: -webkit-linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.25) 20%,rgba(0,0,0,0.75));
+    background-image: -moz-linear-gradient(top,rgba(0,0,0,0),rgba(0,0,0,0.25) 20%,rgba(0,0,0,0.75));
+    background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.25) 20%,rgba(0,0,0,0.75));
+    background-repeat: no-repeat;
+}
+
+.item .opacity {
+    /*background-color: rgba(0,0,0,0.75);*/
+}
+
+.item-overlay {
+    /*display: none;*/
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.item-overlay.active,
+.item:hover .item-overlay {
+    display: block;
+}
+
+

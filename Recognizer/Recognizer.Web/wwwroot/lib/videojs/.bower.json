@@ -1,0 +1,15 @@
+{
+  "name": "videojs",
+  "homepage": "https://github.com/videojs/video.js",
+  "version": "6.2.5",
+  "_release": "6.2.5",
+  "_resolution": {
+    "type": "version",
+    "tag": "v6.2.5",
+    "commit": "566d37cc5f5fa82774d57849f92974f0856b4ad0"
+  },
+  "_source": "https://github.com/videojs/video.js.git",
+  "_target": "v6.2.5",
+  "_originalSource": "videojs",
+  "_direct": true
+}
