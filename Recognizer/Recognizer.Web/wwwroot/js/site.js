@@ -134,13 +134,9 @@ window.onload = function () {
                 //convert to desired file format
                 var dataURI = crop.toDataURL('image/jpeg'); // can also use 'image/png'
 
-                $(".img").remove();
-                var img = new Image();
-                img.className = "img";
-                img.width = rect.width;
-                img.height = rect.height;
-                img.src = dataURI;
-                document.body.append(img);
+                $.post('/home/ReceiveImgs', { source: dataURI }, function (result) {
+                    console.log(result.data);
+                });
 
 
                 //crop.style.display = "block";

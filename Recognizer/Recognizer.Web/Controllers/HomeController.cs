@@ -1,16 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ImageSharp;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.FileProviders;
 using OpenCvSharp;
-using OpenCvSharp.Face;
+using System;
 using System.Diagnostics;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Recognizer.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private IHostingEnvironment _env;
+        public HomeController(IHostingEnvironment env)
+        {
+            this._env = env;
+        }
+
+
         public IActionResult Index()
         {
             var remoteIpAddress = Request.HttpContext.Connection.RemoteIpAddress;
@@ -109,6 +117,37 @@ namespace Recognizer.Web.Controllers
 
 
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult ReceiveImgs(string source)
+        {
+            //https://andrewlock.net/using-imagesharp-to-resize-images-in-asp-net-core-part-4-saving-to-disk/
+            var webRoot = _env.WebRootPath;
+            var PathWithFolderName = System.IO.Path.Combine(webRoot, "data");
+
+            if (!Directory.Exists(PathWithFolderName))
+            {
+                // Try to create the directory.
+                DirectoryInfo di = Directory.CreateDirectory(PathWithFolderName);
+            }
+
+            var base64 = source.Substring(source.IndexOf(',') + 1);
+            base64 = base64.Trim('\0');
+            byte[] imageBytes = Convert.FromBase64String(base64);
+
+            using (MemoryStream ms = new MemoryStream(imageBytes))
+            {
+                using (Image<Rgba32> image = Image.Load(ms))
+                {
+                    image.Resize(image.Width / 2, image.Height / 2)
+                          .Grayscale()
+                          .Save(PathWithFolderName + "/"+DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss_") +"avatar.png"); // automatic encoder selected based on extension.
+                }
+            }
+
+            return Json(new { data=true });
+
         }
 
         public IActionResult About()
