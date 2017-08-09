@@ -22,13 +22,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot/data\2017_08_07_11_48_27_avatar.png" />
+    <Content Remove="wwwroot/data\2017_08_07_13_11_35_72757_avatar.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="wwwroot\css\videojs.record.css" />
     <Content Include="wwwroot\images\frame.png" />
-    <Content Include="wwwroot\js\videojs.record.js" />
     <Content Include="wwwroot\lib\jquery.facedetection\dist\jquery.facedetection.min.js" />
     <Content Include="wwwroot\lib\jquery.facedetection\dist\jquery.facedetection.min.js.map" />
     <Content Include="wwwroot\lib\jquery.facedetection\jquery.facedetection.min.js" />
     <Content Include="wwwroot\lib\jquery.facedetection\jquery.facedetection.min.js.map" />
+    <Content Include="wwwroot\python\camera.py" />
+    <Content Include="wwwroot\python\image_show.py" />
+    <Content Include="wwwroot\python\input.py" />
+    <Content Include="wwwroot\python\train.py" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ImageSharp" Version="1.0.0-alpha9-00175" />
@@ -38,13 +46,17 @@
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.2" />
-    <PackageReference Include="OpenCvSharp3-AnyCPU" Version="3.2.0.20170419" />  
+    <PackageReference Include="OpenCvSharp3-AnyCPU" Version="3.2.0.20170419" />
+    <PackageReference Include="Python36" Version="3.6.0" />  
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\data\" />
+    <Folder Include="wwwroot\data\" />
+    <Folder Include="wwwroot\data\" />
+    <Folder Include="wwwroot\store\" />
   </ItemGroup>
 
 </Project>

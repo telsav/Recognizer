@@ -70,8 +70,30 @@ $(document).ready(function(){
 
 });
 
-
 window.onload = function () {
+
+    //get user ip
+    var userip;
+    var initialFiles = 0;
+    var currentFiles = 0;
+    var maxCount = 100;
+    var arrayImages = new Array();
+    $.getJSON('//freegeoip.net/json/?callback=?', function (data) {
+        //console.log(JSON.stringify(data, null, 2));
+        userip = data.ip;
+
+        //initial file count
+        $.get("/home/GetFilesCount", { ip: userip }, function (result) {
+            if (result.count >= maxCount)
+                result.count = maxCount;
+            var i = (Math.floor(result.count / maxCount) * 100);
+            $(".progress-bar").css("width", i + "%").text(i + " %");
+            initialFiles = result.count;
+            currentFiles = result.count;
+        })
+    });
+
+
     //monitoring of fps
    
     var stats = new Stats();
@@ -104,7 +126,7 @@ window.onload = function () {
     tracker.setStepSize(2);
     tracker.setEdgesDensity(0.1);
 
-    tracking.track('#myVideo', tracker, { camera: true });
+    var trackerTask=tracking.track('#myVideo', tracker, { camera: true });
 
     tracker.on('track', function (event) {
         context.clearRect(0, 0, canvas.width, canvas.height);
@@ -134,21 +156,43 @@ window.onload = function () {
                 //convert to desired file format
                 var dataURI = crop.toDataURL('image/jpeg'); // can also use 'image/png'
 
-                $.post('/home/ReceiveImgs', { source: dataURI }, function (result) {
-                    console.log(result.data);
-                });
-
-
-                //crop.style.display = "block";
-                //crop.src = dataURI;
-                //console.log(dataURI);
-                //console.log('x: ' + rect.x + 'px' + ',y: ' + rect.y);
-                //console.log('x: ' + video.offsetLeft + 'px' + ',y: ' + video.offsetTop);
+                if (currentFiles < maxCount) {
+                    arrayImages.push(dataURI);
+                    //console.log(arrayImages.length);
+                    currentFiles++;
+                    if (currentFiles > maxCount)
+                        currentFiles = maxCount;
+                    var i = (Math.floor(currentFiles / maxCount)) * 100;
+                    $(".progress-bar").css("width", i + "%").text(i + " %");
+                }
+                else {
+                    console.log('currentFiles: ' + currentFiles + ' maxCount: ' + maxCount)
+                    if (currentFiles == maxCount) {
+                        //make sure post once
+                        maxCount -= 1;
+                        //make sure array length is equal max couunt
+                        if (arrayImages.length > maxCount + 1)
+                        {
+                            arrayImages.splice(0, arrayImages.length - maxCount + 1);
+                        }
+                        $.post('/home/ReceiveImgs', { ip: userip, sources: arrayImages }, function (result) {
+                            trackerTask.stop();
+                        });
+                    }
+                }
             });
         }
     });
 
-
+    //setInterval(function () {
+    //    console.log('array Images length is: ' + arrayImages.length + ' maxCount: ' + maxCount)
+    //    if (arrayImages.length == maxCount) {
+    //        maxCount -= 1;//post one
+    //        $.post('/home/ReceiveImgs', { ip: userip, sources: arrayImages }, function (result) {
+                
+    //        });
+    //    }
+    //}, 1000);
 
     //setTimeout(function () {
 
@@ -201,5 +245,15 @@ window.onload = function () {
     //    var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
     //    writeMessage(canvas2, message);
     //}, false);
+
+
+    $("#starttraings").click(function () {
+
+        $.post("/home/ExecuteTrain", { ip: userip }, function (result)
+        {
+            console.log(result.data);
+        })
+
+    });
 }
 
