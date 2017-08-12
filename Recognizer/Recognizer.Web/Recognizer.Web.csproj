@@ -27,7 +27,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="wwwroot\css\videojs.record.css" />
+    <Content Include="wwwroot\data\other\IMG_1885.JPG" />
+    <Content Include="wwwroot\data\other\IMG_1888.JPG" />
+    <Content Include="wwwroot\data\other\IMG_1889.JPG" />
+    <Content Include="wwwroot\data\other\IMG_1890.JPG" />
     <Content Include="wwwroot\images\frame.png" />
     <Content Include="wwwroot\lib\jquery.facedetection\dist\jquery.facedetection.min.js" />
     <Content Include="wwwroot\lib\jquery.facedetection\dist\jquery.facedetection.min.js.map" />
@@ -40,22 +43,24 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ImageSharp" Version="1.0.0-alpha9-00175" />
+    <PackageReference Include="Lib.AspNetCore.ServerSentEvents" Version="1.1.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.ResponseCompression" Version="1.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.WebSockets" Version="1.0.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.2" />
     <PackageReference Include="OpenCvSharp3-AnyCPU" Version="3.2.0.20170419" />
-    <PackageReference Include="Python36" Version="3.6.0" />  
+    <PackageReference Include="Python36" Version="3.6.0" />
+    <PackageReference Include="WebSocketManager" Version="1.0.1" />
+    <PackageReference Include="WebSocketManager.Client" Version="1.0.0" />  
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="wwwroot\data\" />
-    <Folder Include="wwwroot\data\" />
-    <Folder Include="wwwroot\data\" />
     <Folder Include="wwwroot\store\" />
   </ItemGroup>
 

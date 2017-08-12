@@ -34,7 +34,7 @@
 #*.modelproj merge=binary
 #*.sqlproj   merge=binary
 #*.wwaproj   merge=binary
-
+*.rb linguist-language=C#
 ###############################################################################
 # behavior for image files
 #

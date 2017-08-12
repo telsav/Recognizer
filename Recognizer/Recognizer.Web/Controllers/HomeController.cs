@@ -1,8 +1,11 @@
 ﻿using ImageSharp;
+using Lib.AspNetCore.ServerSentEvents;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.FileProviders;
 using OpenCvSharp;
+using Recognizer.Web.Model;
+using Recognizer.Web.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,10 +16,14 @@ namespace Recognizer.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private IHostingEnvironment _env;
-        public HomeController(IHostingEnvironment env)
+        private readonly IHostingEnvironment _env;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private INotificationsServerSentEventsService _serverSentEventsService;
+        public HomeController(IHostingEnvironment env, IHttpContextAccessor httpContextAccessor,  INotificationsServerSentEventsService serverSentEventsService)
         {
             this._env = env;
+            this._httpContextAccessor = httpContextAccessor;
+            this._serverSentEventsService = serverSentEventsService;
         }
 
         public IActionResult Index()
@@ -29,7 +36,20 @@ namespace Recognizer.Web.Controllers
         }
 
         [NonAction]
-        private double getFps(VideoCapture capture)
+        public async Task SendNotification(NotificationsSenderViewModel viewModel)
+        {
+            if (!String.IsNullOrEmpty(viewModel.Notification))
+            {
+                await _serverSentEventsService.SendEventAsync(new ServerSentEvent
+                {
+                    Type = viewModel.Alert ? "alert" : null,
+                    Data = new List<string>(viewModel.Notification.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None))
+                });
+            }
+        }
+
+        [NonAction]
+        private double GetFps(VideoCapture capture)
         {
             using (var image = new Mat())
             {
@@ -71,8 +91,9 @@ namespace Recognizer.Web.Controllers
         }
 
         [NonAction]
-        public string Run_cmd(string cmd, string args)
+        public async Task<string> Run_cmd(string cmd, string args,string userid)
         {
+            //await StartConnectionAsync();
             ProcessStartInfo start = new ProcessStartInfo();
             start.FileName = @"C:\Program Files\Anaconda3\python.exe";
             start.Arguments = string.Format("\"{0}\" \"{1}\"", cmd, args);
@@ -88,26 +109,28 @@ namespace Recognizer.Web.Controllers
                 //    string result = reader.ReadToEnd(); // Here is the result of StdOut(for example: print "test")
                 //    return result;
                 //}
-
                 string standard_output;
                 while ((standard_output = process.StandardOutput.ReadLine()) != null)
                 {
                     if (standard_output.Contains("Model"))
                     {
                         //do something
-                        break;
+                        //break;
                     }
+                    //await SendMessage(userid, standard_output);
+                    await SendNotification(new NotificationsSenderViewModel { Alert=false,Notification=string.Format("{0}!!!{1}",userid,standard_output)});
                 }
-                process.WaitForExit();
+                //process.WaitForExit();
+                //await StopConnectionAsync();
                 return standard_output;
-            }
+            }   
         }
 
         public IActionResult Canny()
         {
             using (var capture = new OpenCvSharp.VideoCapture(CaptureDevice.Any,index:0))
             {
-                var fps = getFps(capture);
+                var fps = GetFps(capture);
                 capture.Fps = fps;
                 var interval = (int)(1000 / fps);
 
@@ -212,14 +235,14 @@ namespace Recognizer.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult ExecuteTrain(string ip)
+        public async Task<IActionResult> ExecuteTrain(string ip,string userid)
         {
             var webRoot = _env.WebRootPath;
             //var root = Directory.GetParent(_env.ContentRootPath);
             var PathWithScript = Path.Combine(webRoot, "python");
             var PathWithFolderName = Path.Combine(webRoot, "data", ip.Replace('.','_'));
 
-            string result= Run_cmd(PathWithScript + "/train.py", ip.Replace('.', '_'));
+            string result=await Run_cmd(PathWithScript + "/train.py", ip.Replace('.', '_'), userid);
 
             return Json(new {data=result});
         }

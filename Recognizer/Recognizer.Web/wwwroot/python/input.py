@@ -58,9 +58,9 @@ def read_image(file_path):
     return image
 
 
-def extract_data(path):
+def extract_data(path,ip):
     images, labels = traverse_dir(path)
     images = np.array(images)
     #labels = np.array([0 if label.endswith('boss') else 1 for label in labels])
-    #labels = np.array([0 if label.endswith('boss') else 1 for label in labels])
+    labels = np.array([0 if label.endswith(ip) else 1 for label in labels])
     return images, labels

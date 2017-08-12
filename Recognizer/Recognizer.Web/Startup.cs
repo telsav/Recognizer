@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Lib.AspNetCore.ServerSentEvents;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.HttpOverrides;
+using Recognizer.Web.Services;
+using System;
+using System.Linq;
 
 namespace Recognizer.Web
 {
@@ -29,11 +30,21 @@ namespace Recognizer.Web
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+
+            services.AddResponseCompression(options =>
+            {
+                options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "text/event-stream" });
+            });
+            services.AddServerSentEvents();
+            services.AddServerSentEvents<INotificationsServerSentEventsService, NotificationsServerSentEventsService>();
+
             services.AddMvc();
+            //services.AddWebSocketManager();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IServiceProvider serviceProvider)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -55,12 +66,32 @@ namespace Recognizer.Web
 
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
+            //app.UseWebSockets();
+            //app.UseMiddleware<MsgWebSocketMiddleware>();
+            //app.MapWebSocketManager("/notifications", serviceProvider.GetService<NotificationsMessageHandler>());
+
+            app.UseResponseCompression()
+                .MapServerSentEvents("/notifications")
+                .MapServerSentEvents("/sse-notifications", serviceProvider.GetService<NotificationsServerSentEventsService>())
+                .UseMvc(routes =>
+                {
+                    routes.MapRoute(
+                        name: "default",
+                        template: "{controller=Home}/{action=Index}/{id?}");
+                });
+
+
+            // Only for demo purposes, don't do this kind of thing to your production
+            IServerSentEventsService serverSentEventsService = serviceProvider.GetService<IServerSentEventsService>();
+            System.Threading.Thread eventsHeartbeatThread = new System.Threading.Thread(new System.Threading.ThreadStart(() =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+                while (true)
+                {
+                    serverSentEventsService.SendEventAsync($"Recognizer.Web Heartbeat ({DateTime.UtcNow} UTC)").Wait();
+                    System.Threading.Thread.Sleep(5000);
+                }
+            }));
+            eventsHeartbeatThread.Start();
         }
     }
 }

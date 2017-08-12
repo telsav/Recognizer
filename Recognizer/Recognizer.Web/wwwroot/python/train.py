@@ -33,7 +33,7 @@ class Dataset(object):
     def read(self, img_rows=IMAGE_SIZE, img_cols=IMAGE_SIZE, img_channels=3, nb_classes=2):
         currentpath=os.path.dirname(os.path.dirname(os.path.abspath(sys.argv[0])))
         #parentpath= os.path.abspath(currentpath, os.pardir)
-        images, labels = extract_data(currentpath+'/data/'+ip+'/')   
+        images, labels = extract_data(currentpath+'/data/',ip)   
         labels = np.reshape(labels, [-1])
         # numpy.reshape
         X_train, X_test, y_train, y_test = train_test_split(images, labels, test_size=0.3, random_state=random.randint(0, 100))

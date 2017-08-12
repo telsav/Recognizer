@@ -130,4 +130,12 @@ body {
     display: block;
 }
 
+.bg-inverse {
+    background-color: #292b2c !important;
+}
+
+.text-white {
+    color: #fff !important;
+}
+
 
